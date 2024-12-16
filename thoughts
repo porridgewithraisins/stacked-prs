@@ -1,0 +1,13 @@
+ - need 3 options in gitconfig - notes.rewrite.{amend,rebase} = true, notes.rewriteRef = refs/notes/commits
+ - the mapping returned by git notes list contains pre-rewrite objects as well. These need to be dealt with somehow to
+   enable parsing of the existing notes to build the mapping for the _current_ tree.
+ - Need to make a way to say "I am working on this <note> now, so when I make a commit on top of a commit with a note,
+   update the note automatically". I think post-commit hooks for this would be great.
+ - Put an identifier at start of note so that git notes can be used normally without us interfering.
+ - Multiple stacked PRs at the same time -- put the branch name in the note as well to disambiguate. However, this will
+   have problems when the branch name changes! Might need to figure something out here. Post-checkout hook might work,
+   need to check it out.
+ - If using hooks, people will have existing hooks. So need to include an easy way to set it up with say, a
+   systemd-style precommit.d folder and have the actual hook call the scripts in that folder in order.
+ - If using hooks, need to make sure we aren't messing it up in the middle of rebases/merge conflict fixes. See hooks
+   documentation for all this.
